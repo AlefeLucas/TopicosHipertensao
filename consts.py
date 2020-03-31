@@ -1,3 +1,5 @@
+import csv
+
 # Estrutura que representa o conjunto de dados
 # de pessoas do IBGE.
 dataset = {
@@ -390,18 +392,101 @@ model_cols = {
     'P035': 'Ativ_Fisica_Semana',
     'P036': 'Ativ_Fisica_Qual'
 }
+
 # Variaveis selecionadas
-variaveis = ['V0001', ...];
+variaveisDomiciliar = ['V0001', 'V0006_PNS']
+variaveisPessoa = ['V0001', 'V0006_PNS', 'C006', 'C008', 'C009', 'D001', 'E019', 'F001', 'F00102', 'F007', 'F00702',
+                   'F008', 'F00802', 'VDF001', 'VDF00102', 'G002', 'G00201', 'G003', 'G006', 'G007', 'G00701', 'G008',
+                   'G009', 'G021', 'G022', 'G02201', 'G023', 'G024', 'G02501', 'G02502', 'G02503', 'I001', 'I005',
+                   'J001', 'J002', 'J004', 'J005', 'J006', 'J007', 'J008', 'J010', 'J011', 'J012', 'J014', 'J015',
+                   'J016', 'J027', 'J037', 'J038', 'J039', 'J04001', 'J04002', 'J053', 'J054', 'J058', 'K045', 'K046',
+                   'K047', 'K052', 'K053', 'M005', 'M006', 'M007', 'M008', 'M010', 'M01106', 'M014', 'M016', 'N004',
+                   'N005', 'N015', 'N016', 'O022', 'O024', 'P00101', 'P00301', 'P00401', 'P005', 'P006', 'P007', 'P009',
+                   'P011', 'P012', 'P015', 'P016', 'P017', 'P018', 'P019', 'P020', 'P021', 'P022', 'P023', 'P024',
+                   'P025', 'P026', 'P02601', 'P028', 'P029', 'P031', 'P032', 'P034', 'P035', 'P036', 'P03701', 'P03702',
+                   'P038', 'P039', 'P03901', 'P03902', 'P03903', 'P040', 'P04101', 'P04102', 'P042', 'P04301', 'P04302',
+                   'P04403', 'P045', 'P046', 'P047', 'P048', 'P050', 'P052', 'P053', 'P05401', 'P05402', 'P05405',
+                   'P05408', 'P05411', 'P05414', 'P05417', 'P05421', 'P05802', 'P05901', 'P05902', 'P05903', 'P05904',
+                   'P060', 'P061', 'P062', 'P066', 'Q001', 'Q002', 'Q003', 'Q004', 'Q005', 'Q006', 'Q007', 'Q008',
+                   'Q009', 'Q010', 'Q011', 'Q017', 'Q01801', 'Q01802', 'Q01803', 'Q01804', 'Q01805', 'Q01806', 'Q01807',
+                   'Q01808', 'Q01901', 'Q01902', 'Q01903', 'Q01904', 'Q01905', 'Q026', 'Q027', 'Q028', 'Q030', 'Q031',
+                   'Q032', 'Q03401', 'Q03402', 'Q039', 'Q053', 'Q054', 'Q05504', 'Q05505', 'Q060', 'Q061', 'Q064',
+                   'Q06501', 'Q06502', 'Q06503', 'Q066', 'Q067', 'Q068', 'Q069', 'Q070', 'Q071', 'Q07201', 'Q07202',
+                   'Q07203', 'Q07204', 'Q07205', 'Q088', 'Q089', 'Q09001', 'Q092', 'Q093', 'Q094', 'Q09601', 'Q09602',
+                   'Q097', 'Q109', 'Q110', 'Q11001', 'Q11002', 'Q11004', 'Q111', 'Q112', 'Q116', 'Q11601', 'Q11602',
+                   'Q11603', 'Q117', 'Q11801', 'Q120', 'Q121', 'Q122', 'Q124', 'Q125', 'Q12601', 'Q12602', 'Q127',
+                   'Q128', 'Q130', 'Q131', 'Q132', 'Q133', 'Q134', 'Q136', 'Q137', 'R028', 'R029', 'S001', 'S004',
+                   'S01002', 'S01003', 'S01004', 'S01103', 'S01401', 'S01402', 'S015', 'S016', 'S017', 'S021', 'W00103',
+                   'W00203', 'W00303', 'W00407', 'W00408', 'VDD004']
 
-arq = open('Dados/Dados/DOMPNS2013.txt', 'r');
-arq1 = open('Dados/Dados/PESPNS2013.txt', 'r');
 
-linhaBD = arq.readline()
-linhaBP = arq1.readline()
-arq.close()
+arqD = open('Dados/Dados/DOMPNS2013.txt', 'r')
+arqP = open('Dados/Dados/PESPNS2013.txt', 'r')
+# Lembrar de criar arquivo
+arqCsvDomiciliar = open('Dados/Dados/baseDomicilios.csv', 'w', newline='')
+arqCsvPessoa = open('Dados/Dados/basePessoas.csv', 'w', newline='')
 
-print("tamanho linha base: ", len(linhaBD) + len(linhaBP))
+writerD = csv.writer(arqCsvDomiciliar, delimiter=';')
 
-linhaA = len(dataset['col_widths'])
-print("Tamanho: ", linhaA)
+writerP = csv.writer(arqCsvPessoa, delimiter=';')
 
+
+def num_lines_d():
+    c = 0
+    for i in arqD:
+        c = c + 1
+    return c
+
+
+def num_lines_p():
+    c = 0
+    for i in arqP:
+        c = c + 1
+    return c
+
+
+def sum_pos(x):
+    count = 0
+    resp = []
+    for i, value in enumerate(x):
+        resp.append(count)
+        count += value
+    return resp
+
+
+sumPosArray = sum_pos(dataset['col_widths'])
+
+
+def iterate_residence_base():
+    writerD.writerow(variaveisDomiciliar)
+    for line in arqD:
+        resp = []
+        for j, value in enumerate(variaveisDomiciliar):
+            if value in dataset['col_names']:
+                index = dataset['col_names'].index(value)
+                pos = sumPosArray[index]
+                tam = dataset['col_widths'][index]
+                resp.append(line[pos:pos + tam])
+        writerD.writerow(resp)
+
+
+def iterate_person_base():
+    writerP.writerow(variaveisPessoa)
+    for line in arqP:
+        resp = []
+        for j, value in enumerate(variaveisPessoa):
+            if value in dataset['col_names']:
+                index = dataset['col_names'].index(value)
+                pos = sumPosArray[index]
+                tam = dataset['col_widths'][index]
+                resp.append(line[pos:pos + tam])
+        writerP.writerow(resp)
+
+
+# gera base pessoa (o que precisamos)
+iterate_person_base()
+
+arqD.close()
+arqP.close()
+arqCsvPessoa.close()
+arqCsvDomiciliar.close()
