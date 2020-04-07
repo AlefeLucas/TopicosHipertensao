@@ -1,4 +1,6 @@
 import csv
+import numpy as np
+import pandas as pd
 
 # Estrutura que representa o conjunto de dados
 # de pessoas do IBGE.
@@ -419,12 +421,42 @@ variaveisPessoa = ['V0001', 'V0006_PNS', 'C006', 'C008', 'C009', 'D001', 'E019',
                    'S01002', 'S01003', 'S01004', 'S01103', 'S01401', 'S01402', 'S015', 'S016', 'S017', 'S021', 'W00103',
                    'W00203', 'W00303', 'W00407', 'W00408', 'VDD004']
 
+# map de estados
+estados = {
+    '11': 'Rondônia',
+    '12': 'Acre',
+    '13': 'Amazonas',
+    '14': 'Roraima',
+    '15': 'Pará',
+    '16': 'Amapá',
+    '17': 'Tocantins',
+    '21': 'Maranhão',
+    '22': 'Piauí',
+    '23': 'Ceará',
+    '24': 'Rio Grade do Norte',
+    '25': 'Paraíba',
+    '26': 'Pernambuco',
+    '27': 'Alagoas',
+    '28': 'Sergipe',
+    '29': 'Bahia',
+    '31': 'Minas Gerais',
+    '32': 'Espírito Santo',
+    '33': 'Rio de Janeiro',
+    '35': 'São Paulo',
+    '41': 'Paraná',
+    '42': 'Santa Catarina',
+    '43': 'Rio Grande do Sul',
+    '50': 'Mato Grosso do Sul',
+    '51': 'Mato Grosso',
+    '52': 'Goiás',
+    '53': 'Distrito Federal'
+}
 
 arqD = open('Dados/Dados/DOMPNS2013.txt', 'r')
 arqP = open('Dados/Dados/PESPNS2013.txt', 'r')
 # Lembrar de criar arquivo
-arqCsvDomiciliar = open('Dados/Dados/baseDomicilios.csv', 'w', newline='')
-arqCsvPessoa = open('Dados/Dados/basePessoas.csv', 'w', newline='')
+arqCsvDomiciliar = open('Dados/Dados/baseDomicilios.csv', 'r')
+arqCsvPessoa = open('Dados/Dados/basePessoas.csv', 'r')
 
 writerD = csv.writer(arqCsvDomiciliar, delimiter=';')
 
@@ -440,7 +472,7 @@ def num_lines_d():
 
 def num_lines_p():
     c = 0
-    for i in arqP:
+    for i in arqCsvPessoa:
         c = c + 1
     return c
 
@@ -453,6 +485,42 @@ def sum_pos(x):
         count += value
     return resp
 
+
+def column_pos(s):
+    columns = variaveisPessoa
+    for i, value in enumerate(columns):
+        if s in value:
+            return i
+
+
+def age_distribution():
+    hypertension = column_pos("Q002")
+    diagnostic_age_position = column_pos("Q003")
+    age_position = column_pos("C008")
+    ages = []
+    arqCsvPessoa.readline()
+    for i in arqCsvPessoa:
+        columns = i.split(';')
+        if columns[hypertension] == "1" and columns[diagnostic_age_position] != "0":
+            ages.append(columns[diagnostic_age_position])
+        elif columns[hypertension] == "1" and columns[diagnostic_age_position] == "0":
+            ages.append(columns[age_position])
+    return ages
+
+'''
+def state_distribution():
+    hypertension = column_pos("Q002")
+    state_position = column_pos("V001")
+    ages = []
+    arqCsvPessoa.readline()
+    for i in arqCsvPessoa:
+        columns = i.split(';')
+        if columns[hypertension] == "1" and columns[diagnostic_age_position] != "0":
+            ages.append(columns[diagnostic_age_position])
+        elif columns[hypertension] == "1" and columns[diagnostic_age_position] == "0":
+            ages.append(columns[age_position])
+    return ages
+'''
 
 sumPosArray = sum_pos(dataset['col_widths'])
 
@@ -484,7 +552,8 @@ def iterate_person_base():
 
 
 # gera base pessoa (o que precisamos)
-iterate_person_base()
+# iterate_person_base()
+print(num_lines_p())
 
 arqD.close()
 arqP.close()
