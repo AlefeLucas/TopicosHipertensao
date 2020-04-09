@@ -284,117 +284,6 @@ dataset = {
     ]
 }
 
-# As variáveis a seguir foram consideradas, inicialmente, como as
-# que são importantes para o modelo. Além de defini-las, iremos
-# renomea-las, para facilitar o entendimento.
-model_cols = {
-    'V0001': 'Regiao',
-
-    ### Depressão ###
-    'Q092': 'Diagnosticado_Depressao',
-
-    ### Doença cerebral ###
-
-    'G001': 'Defic_Intelectual',
-    'G002': 'Nasceu_Ou_Adquiriu_Defic_Intelectual',
-    'G004': 'Defic_Intelectual_Limita_Atividades',
-    'J007': 'Doença_Fisica_Cronica_Mental',
-    'Q112': 'Visita_Medico',
-    'Q115': 'Doença_Cerebral_Limita',
-    'Q110': 'Esqz_Bipol_Psicose_TOC',
-    'Q11401': 'Psicoterapia_Doenca_Mental',
-    'Q11402': 'Medicamentos_Doenca_Mental',
-
-    ### Doenças sistêmicas ###
-
-    'Q063': 'Diagnostico_Doenca_Coracao',
-    'Q06301': 'Diagnostico_Infarto',
-    'Q06302': 'Diagnostico_Angina',
-    'Q06303': 'Diagnostico_Insuf_Cardiaca',
-    'Q116': 'Diagnostico_Doença_Pulmao',
-    'Q11601': 'Diagnostico_Enf_Pulmonar',
-    'Q11602': 'Diagnotico_Bronquite_Cronica',
-    'Q11603': 'Diagnostico_Outra_Pulmonar',
-    'Q120': 'Diagnostico_Cancer',
-    'Q124': 'Diagnostico_Insuf_Renal_Cronica',
-
-    ### Estresse Físico ###
-
-    'N004': 'Duas_Semanas_Cansado',
-    'N010': 'Duas_Semanas _Problema_Sono',
-    'N011': 'Cansado_Subir_Andar_Dor_Peito',
-    'P039': 'Exercicio_Pesado',
-
-    ## Estresse mental ###
-
-    'N015': 'Lentidao_Agitacao_Ultimas_Semanas',
-    'Q132': 'Uso_Remedio_Dormir',
-    'Q133': 'Uso_Quantos_Dias_Remedio_Dormir',
-
-    ### Gravidez ###
-
-    'R034': 'Evitar_Gravidez',
-    'R035': 'Porque_Nao_Evitar_Gravidez',
-    'R040': 'Idade_Gravidez',
-    'R039': 'Ja_Engravidou',
-    'R041': 'Aborto_Espontaneo',
-    'R042': 'Aborto_Provocado',
-
-    ### Lesão Cerebral ###
-
-    'Q068': 'Diagnosticado_AVC_Derrame',
-    'O025': 'Sofreu_Violencia_Pessoa_Desconhecida',
-    'O027': 'Tipo_Mais_Grave_Violencia',
-    'O029': 'Local_Violencia',
-    'O031': 'Deixou_Fazer_Atividade_Violencia',
-    'O033': 'Assistencia_Saude_Violencia',
-    'O036': 'Sequela_Incapacidade_Violencia',
-    'O037': 'Sofreu_Violencia_Pessoa_Conhecida',
-    'O038': 'Frequencia_Violencia_Pessoa_Conhecida',
-    'O039': 'Tipo_Violencia_Pessoa_Conhecida',
-    'O042': 'Pessoa_Conhecida_Violencia',
-
-    ### Medicamentos ###
-
-    'Q06204': 'Recomend_Remedio_Colesterol',
-    'Q006': 'Toma_Remedio_Hipertensao',
-    'Q07205': 'Toma_Remedio_AVC',
-    'Q06503': 'Toma_Remedio_Doenca_Coracao',
-
-    ### Menopausa/Andropausa ###
-
-    'R026': 'Ainda_Menstrua',
-    'R027': 'Parou_Menstruar',
-    'R028': 'Entrou_Menopausa',
-    'R029': 'Fez_Tratamento_Menopausa',
-
-    ### Oscilação Hormonal ###
-
-    'R03601': 'Pilula_Evitar_Gravidez',
-    'R03602': 'Tabela_Evitar_Gravidez',
-    'C006': 'Sexo',
-    'Q030': 'Tem_Diabetes',
-    'N014': 'Falta_Apetite',
-
-    ### Puberdade ###
-
-    'D002': 'Frequenta_Escola',
-    'D003': 'Curso_Frequentado',
-    'O041': 'Violencia_Na_Escola_Casa',
-    'C008': 'Idade',
-
-    ### Traumas de infância ###
-
-    'G007': 'Nasceu_Ou_Adquiriu_Defi_Fisica',
-    'L004': 'Local_Acomp_Crescimento_Crianca',
-    'D006': 'Serie_Ano_Que_Frequenta',
-
-    ### Atividade Física ###
-    'P034': 'Ativ_Fisica_3meses',
-    'P035': 'Ativ_Fisica_Semana',
-    'P036': 'Ativ_Fisica_Qual'
-}
-
 # Variaveis selecionadas
 variaveisDomiciliar = ['V0001', 'V0006_PNS']
 variaveisPessoa = ['V0001', 'V0006_PNS', 'C006', 'C008', 'C009', 'D001', 'E019', 'F001', 'F00102', 'F007', 'F00702',
@@ -422,35 +311,8 @@ variaveisPessoa = ['V0001', 'V0006_PNS', 'C006', 'C008', 'C009', 'D001', 'E019',
                    'W00203', 'W00303', 'W00407', 'W00408', 'VDD004']
 
 # map de estados
-estados = {
-    '11': 'Rondônia',
-    '12': 'Acre',
-    '13': 'Amazonas',
-    '14': 'Roraima',
-    '15': 'Pará',
-    '16': 'Amapá',
-    '17': 'Tocantins',
-    '21': 'Maranhão',
-    '22': 'Piauí',
-    '23': 'Ceará',
-    '24': 'Rio Grade do Norte',
-    '25': 'Paraíba',
-    '26': 'Pernambuco',
-    '27': 'Alagoas',
-    '28': 'Sergipe',
-    '29': 'Bahia',
-    '31': 'Minas Gerais',
-    '32': 'Espírito Santo',
-    '33': 'Rio de Janeiro',
-    '35': 'São Paulo',
-    '41': 'Paraná',
-    '42': 'Santa Catarina',
-    '43': 'Rio Grande do Sul',
-    '50': 'Mato Grosso do Sul',
-    '51': 'Mato Grosso',
-    '52': 'Goiás',
-    '53': 'Distrito Federal'
-}
+estados = ['11', '12', '13', '14', '15', '16', '17', '21', '22', '23', '24', '25', '26', '27', '28', '29', '31', '32',
+           '33', '35', '41', '42', '43', '50', '51', '52', '53']
 
 arqD = open('Dados/Dados/DOMPNS2013.txt', 'r')
 arqP = open('Dados/Dados/PESPNS2013.txt', 'r')
@@ -507,20 +369,21 @@ def age_distribution():
             ages.append(columns[age_position])
     return ages
 
-'''
+
 def state_distribution():
     hypertension = column_pos("Q002")
-    state_position = column_pos("V001")
-    ages = []
+    state_position = column_pos("V0001")
+    num_hypertension_per_state = [0]*len(estados)
     arqCsvPessoa.readline()
-    for i in arqCsvPessoa:
-        columns = i.split(';')
-        if columns[hypertension] == "1" and columns[diagnostic_age_position] != "0":
-            ages.append(columns[diagnostic_age_position])
-        elif columns[hypertension] == "1" and columns[diagnostic_age_position] == "0":
-            ages.append(columns[age_position])
-    return ages
-'''
+    for j in arqCsvPessoa:
+        columns = j.split(';')
+        if columns[hypertension] == "1":
+            state = columns[state_position]
+            ind = estados.index(state)
+            num_hypertension_per_state[ind] = num_hypertension_per_state[ind] + 1
+
+    return num_hypertension_per_state
+
 
 sumPosArray = sum_pos(dataset['col_widths'])
 
@@ -553,8 +416,7 @@ def iterate_person_base():
 
 # gera base pessoa (o que precisamos)
 # iterate_person_base()
-print(num_lines_p())
-
+print(state_distribution())
 arqD.close()
 arqP.close()
 arqCsvPessoa.close()
